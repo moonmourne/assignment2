@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+    <head>
+        <title>Assignment 2</title>
+        <link href='/css/form.css' rel='stylesheet' type='text/css'></link>
+        <script type='text/javascript' src='//code.jquery.com/jquery-1.9.1.js'></script>
+        <script type='text/javascript' src='/js/form.js'></script>
+    </head>
+    <body>        
+         <div class="background">
+        </div>
+         <div class="body">
+             <div class="a-title"><h1>Assignment 2</h1></div>
+              <div id="header">
+                  Welcome <b>{{ user.email() }}</b>. <a href="{{ logout_url | safe }}">Sign out</a>
+             </div>  
+             {% if isAdmin  %}
+             <div class="admin-show">You are editing <b class="edit-name"></b> . <a href="">back to myself</a></div>
+             {% endif %}
+            <div class="form">
+            <div class="name-container">
+                <div class="title-name">Name:</div><div class="input"><input type="text" class="name text-input" value="{{formdata.name|default('',true)}}" /></div>
+            </div>
+                <input type="hidden" class="email text-input" value="{{user.email()}}" />
+            
+            <div class="gender-container">
+                <div class="title-name">Gender:</div><div class="input"><input type="radio" class="male" name="gender" value=1 {% if formdata.gender!=0 %}checked="true"{% endif %} />M<input type="radio" class="female" name="gender" {% if formdata.gender==0 %}checked="true"{% endif %} value=0 />F</div>
+            </div>
+            <div class="age-container">
+                <div class="title-name">Age(0-99):</div><div class="input"><input type="number" class="age numberinput text-input" value="{{formdata.age|default(0,true)}}"  /></div>
+            </div>
+            <div class="years-container">
+                <div class="title-name">Years of experience<br> in web development(0-99):</div><div class="input"><input type="number" class="years numberinput text-input" value="{{formdata.years|default(0,true)}}" /></div>
+            </div>
+            <div class="url-container">
+                <div class="title-name">"Talent tree" Url:</div><div class="input"><input type="text" class="url text-input" value="{{formdata.talent_tree|default('',true)}}"/></div>
+            </div>
+            <div class="button-container"><input type="button" class="save button" value="Save"/>
+            <input type="button" class="view button" value="View talent"/></div>
+            </div>
+            <div class="admin">
+                 {% if isAdmin  %}
+                <hr>
+                <br>
+                <div>Admin Search Box</div>
+                <div class="search-container"><input type="text" class="searchemail"><input type="button" class="search button" value="Search"></div>
+                <!--        
+                
+                Part 3: BONUS section         
+                - Display a search box for admin to search records using email
+                - Use AJAX to request the data from server
+                - Use javascript to load the data to the form
+                - Finally, admin can modify the form data for that user and save it        
+                
+                -->       
+                {% endif %}      
+
+                <hr>
+        </div>
+        <div id="footer">Designed  by Shangguan Chao (1155042592)</div>
+                    </div>
+        <div class="black-mask"></div>
+        <div class="alert">
+                <div class="title">My alert</div>
+                <div class="info">
+                                       
+                            <p class="p-t msg">Your data is saved successfully</p>
+                            <div class="link"><a  href="javascript:void();">OK</a></div>
+                      
+                </div>
+                           
+    </body>
+</html>
+{% endautoescape %}
