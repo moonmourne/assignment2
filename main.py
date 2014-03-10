@@ -129,7 +129,7 @@ class Search(webapp2.RequestHandler):
         qry=Form.query(ancestor=ancestor_key)
         formdata=qry.fetch()
         if len(formdata)==0:
-            self.response.out.write(json.dumps({'status':'False','msg':"Error: nothing found"}))
+            self.response.out.write(json.dumps({'status':'False','msg':"Error: No entry is found for this email"}))
             return
         formdata=formdata[0]
         data={'status':'succ','data':{
